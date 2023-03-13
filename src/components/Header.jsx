@@ -1,11 +1,20 @@
 
 import React, { useState } from 'react'
 import {Button, Form, InputGroup } from 'react-bootstrap';
+import { v4 as uuidv4 } from 'uuid';
 
-const Header = () => {
-       const [task, setTask] = useState("");
+const Header = ({todos, setTodos}) => {
+       const [task, setTask] = useState("")
        const addTodo =()=>{
-          console.log(task);
+          // console.log(task),
+          const newTodo = {
+            id: uuidv4(),
+            text:task,
+            completed: false  
+          }
+          console.log(newTodo);
+          setTodos([...todos,newTodo])
+          setTask("")
        }
   return (
     <div>
@@ -18,7 +27,7 @@ const Header = () => {
           value={task}
           onChange={(e)=> setTask(e.target.value)}
         />
-        <button className='input-group-text bg-success' id="basic-addon2" onClick={addTodo}>Add Todo</button>
+        <Button className='input-group-text bg-success' disabled={!task.trim()} id="basic-addon2" onClick={addTodo}>Add Todo</Button>
       </InputGroup>
     </div>
   );
