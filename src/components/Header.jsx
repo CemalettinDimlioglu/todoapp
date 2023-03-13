@@ -1,8 +1,12 @@
 
-import React from 'react'
-import { Form, InputGroup } from 'react-bootstrap';
+import React, { useState } from 'react'
+import {Button, Form, InputGroup } from 'react-bootstrap';
 
 const Header = () => {
+       const [task, setTask] = useState("");
+       const addTodo =()=>{
+          console.log(task);
+       }
   return (
     <div>
       <h1 className="text-center text-danger m-5">Todo App </h1>
@@ -11,9 +15,10 @@ const Header = () => {
           placeholder="Enter New Todo..."
           aria-label="Recipient's username"
           aria-describedby="basic-addon2"
-          onChange={(e)=> console.log(e.target.value)}
+          value={task}
+          onChange={(e)=> setTask(e.target.value)}
         />
-        <button className='input-group-text bg-success' id="basic-addon2">Add Todo</button>
+        <button className='input-group-text bg-success' id="basic-addon2" onClick={addTodo}>Add Todo</button>
       </InputGroup>
     </div>
   );
